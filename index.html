@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Programa de Recompensas Infantil</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#7e22ce">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+        .task-item {
+            transition: all 0.3s ease;
+        }
+        .task-item:hover {
+            transform: translateY(-2px);
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .bounce {
+            animation: bounce 0.5s infinite alternate;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-blue-50 min-h-screen p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-bold text-purple-700 mb-2">🌟 Programa de Recompensas 🌟</h1>
+            <p class="text-lg text-purple-600">Incentive bons comportamentos e tarefas dos seus pequenos!</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <!-- Child 1 Card -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-yellow-300 transform hover:scale-105 transition duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-16 h-16 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
+                        <i class="fas fa-child text-3xl text-yellow-500"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800">Pedrinho</h2>
+                        <p class="text-sm text-gray-600">5 anos</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-yellow-700">Progresso</span>
+                        <span id="points1" class="text-sm font-bold text-yellow-600">0/10</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-4">
+                        <div id="progress1" class="progress-bar h-4 rounded-full bg-yellow-400" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="text-center mb-4">
+                    <p id="reward1" class="font-semibold text-gray-700">Continue assim para ganhar uma recompensa!</p>
+                </div>
+                <button onclick="addPoint(1)" class="w-full bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-full transition duration-300 shadow-md">
+                    <i class="fas fa-plus mr-2"></i>Adicionar Ponto
+                </button>
+            </div>
+
+            <!-- Child 2 Card -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-blue-300 transform hover:scale-105 transition duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                        <i class="fas fa-child text-3xl text-blue-500"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800">Aninha</h2>
+                        <p class="text-sm text-gray-600">6 anos</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-blue-700">Progresso</span>
+                        <span id="points2" class="text-sm font-bold text-blue-600">0/10</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-4">
+                        <div id="progress2" class="progress-bar h-4 rounded-full bg-blue-400" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="text-center mb-4">
+                    <p id="reward2" class="font-semibold text-gray-700">Continue assim para ganhar uma recompensa!</p>
+                </div>
+                <button onclick="addPoint(2)" class="w-full bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full transition duration-300 shadow-md">
+                    <i class="fas fa-plus mr-2"></i>Adicionar Ponto
+                </button>
+            </div>
+
+            <!-- Child 3 Card -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border-2 border-green-300 transform hover:scale-105 transition duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                        <i class="fas fa-child text-3xl text-green-500"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800">Lucas</h2>
+                        <p class="text-sm text-gray-600">7 anos</p>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="flex justify-between mb-1">
+                        <span class="text-sm font-medium text-green-700">Progresso</span>
+                        <span id="points3" class="text-sm font-bold text-green-600">0/10</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-4">
+                        <div id="progress3" class="progress-bar h-4 rounded-full bg-green-400" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="text-center mb-4">
+                    <p id="reward3" class="font-semibold text-gray-700">Continue assim para ganhar uma recompensa!</p>
+                </div>
+                <button onclick="addPoint(3)" class="w-full bg-green-400 hover:bg-green-500 text-white font-bold py-2 px-4 rounded-full transition duration-300 shadow-md">
+                    <i class="fas fa-plus mr-2"></i>Adicionar Ponto
+                </button>
+            </div>
+        </div>
+
+        <!-- Tasks Section -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-10">
+            <h2 class="text-2xl font-bold text-purple-700 mb-6 text-center">📋 Tarefas e Comportamentos</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <!-- Category 1 -->
+                <div class="border border-purple-200 rounded-lg p-4">
+                    <h3 class="font-bold text-purple-600 mb-3 text-center">
+                        <i class="fas fa-broom mr-2"></i>Tarefas Diárias
+                    </h3>
+                    <ul class="space-y-2">
+                        <li class="task-item flex items-center p-2 bg-purple-50 rounded-lg">
+                            <input type="checkbox" class="mr-2 h-5 w-5 text-purple-600 rounded">
+                            <span>Arrumar a cama</span>
+                        </li>
+                        <li class="task-item flex items-center p-2 bg-purple-50 rounded-lg">
+                            <input type="checkbox" class="mr-2 h-5 w-5 text-purple-600 rounded">
+                            <span>Guardar os brinquedos</span>
+                        </li>
+                        <li class="task-item flex items-center p-2 bg-purple-50 rounded-lg">
+                            <input type="checkbox" class="mr-2 h-5 w-5 text-purple-600 rounded">
+                            <span>Colocar roupa suja no cesto</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="border border-blue-200 rounded-lg p-4">
+                    <h3 class="font-bold text-blue-600 mb-3 text-center">
+                        <i class="fas fa-heart mr-2"></i>Bons Comportamentos
+                    </h3>
+                    <ul class="space-y-2">
+                        <li class="task-item flex items-center p-2 bg-blue-50 rounded-lg">
+                            <input type="checkbox" class="mr-2 h-5 w-5 text-blue-600 rounded">
+                            <span>Dividir brinquedos</span>
+                        </li>
+                        <li class="task-item flex items-center p-2 bg-blue-50 rounded-lg">
+                            <input type="checkbox" class="mr-2 h-5 w-5 text-blue-600 rounded">
+                            <span>Ser educado(a)</span>
+                        </li>
+                        <li class="task-item flex items-center p-2 bg-blue-50 rounded-lg">
+                            <input type="checkbox" class="mr-2 h-5 w-5 text-blue-600 rounded">
+                            <span>Ajudar um irmão</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="border border-green-200 rounded-lg p-4">
+                    <h3 class="font-bold text-green-600 mb-3 text-center">
+                        <i class="fas fa-book mr-2"></i>Tarefas Educativas
+                    </h3>
+                    <ul class="space-y-2">
+                        <li class="task-item flex items-center p-2 bg-green-50 rounded-lg">
+                            <input type="checkbox" class="mr-2 h-5 w-5 text-green-600 rounded">
+                            <span>Ler um livro</span>
+                        </li>
+                        <li class="task-item flex items-center p-2 bg-green-50 rounded-lg">
+                            <input type="checkbox" class="mr-2 h-5 w-5 text-green-600 rounded">
+                            <span>Praticar escrita</span>
+                        </li>
+                        <li class="task-item flex items-center p-2 bg-green-50 rounded-lg">
+                            <input type="checkbox" class="mr-2 h-5 w-5 text-green-600 rounded">
+                            <span>Fazer desenho criativo</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Add Custom Task -->
+            <div class="mt-6">
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Adicionar Tarefa Personalizada</h3>
+                <div class="flex flex-col md:flex-row gap-2">
+                    <input type="text" id="newTaskInput" placeholder="Ex.: Escovar os dentes sozinho" 
+                           class="flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <select id="taskCategory" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <option value="purple">Tarefa Diária</option>
+                        <option value="blue">Bom Comportamento</option>
+                        <option value="green">Tarefa Educativa</option>
+                    </select>
+                    <button onclick="addCustomTask()" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 shadow">
+                        <i class="fas fa-plus mr-2"></i>Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rewards Section -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <h2 class="text-2xl font-bold text-purple-700 mb-6 text-center">🎁 Recompensas Possíveis</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="bg-pink-100 border-2 border-pink-300 rounded-lg p-4 text-center transform hover:scale-105 transition duration-300">
+                    <i class="fas fa-gamepad text-4xl text-pink-500 mb-3"></i>
+                    <h3 class="font-bold text-pink-700">15 minutos de videogame</h3>
+                    <p class="text-sm text-pink-600">Ex.: Mario Kart, Minecraft</p>
+                </div>
+                <div class="bg-yellow-100 border-2 border-yellow-300 rounded-lg p-4 text-center transform hover:scale-105 transition duration-300">
+                    <i class="fas fa-film text-4xl text-yellow-500 mb-3"></i>
+                    <h3 class="font-bold text-yellow-700">Filme favorito</h3>
+                    <p class="text-sm text-yellow-600">Mamãe ou papai vê comigo</p>
+                </div>
+                <div class="bg-green-100 border-2 border-green-300 rounded-lg p-4 text-center transform hover:scale-105 transition duration-300">
+                    <i class="fas fa-ice-cream text-4xl text-green-500 mb-3"></i>
+                    <h3 class="font-bold text-green-700">Sobremesa especial</h3>
+                    <p class="text-sm text-green-600">Sorvete ou chocolate</p>
+                </div>
+                <div class="bg-blue-100 border-2 border-blue-300 rounded-lg p-4 text-center transform hover:scale-105 transition duration-300">
+                    <i class="fas fa-puzzle-piece text-4xl text-blue-500 mb-3"></i>
+                    <h3 class="font-bold text-blue-700">Novo brinquedo</h3>
+                    <p class="text-sm text-blue-600">Jogo ou quebra-cabeça</p>
+                </div>
+            </div>
+
+            <!-- Add Custom Reward -->
+            <div class="mt-6">
+                <h3 class="font-semibold text-lg text-gray-800 mb-3">Adicionar Recompensa Personalizada</h3>
+                <div class="flex">
+                    <input type="text" id="newRewardInput" placeholder="Ex.: Passeio no parque" 
+                           class="flex-grow px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <button onclick="addCustomReward()" class="ml-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 shadow">
+                        <i class="fas fa-plus mr-2"></i>Adicionar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Voice Commands Section -->
+        <div class="bg-blue-700 text-white p-6 rounded-2xl shadow-lg mt-6">
+            <h2 class="text-2xl font-bold mb-4">🎙️ Comandos de Voz</h2>
+            <div class="flex flex-wrap gap-4 mb-4">
+                <button onclick="startVoiceCommand(1)" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg">
+                    <i class="fas fa-microphone mr-2"></i>Pedrinho
+                </button>
+                <button onclick="startVoiceCommand(2)" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg">
+                    <i class="fas fa-microphone mr-2"></i>Aninha
+                </button>
+                <button onclick="startVoiceCommand(3)" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-lg">
+                    <i class="fas fa-microphone mr-2"></i>Lucas
+                </button>
+            </div>
+            <p class="text-sm">Diga comandos como: "Adicionar ponto", "Ver progresso" ou "Reiniciar"</p>
+        </div>
+
+        <!-- Instructions Section -->
+        <div class="bg-purple-700 text-white p-6 rounded-2xl shadow-lg mt-6">
+            <h2 class="text-2xl font-bold mb-4">📝 Como usar este programa</h2>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>Cada vez que a criança completar uma tarefa ou demonstrar bom comportamento, clique em "Adicionar Ponto".</li>
+                <li>Quando a criança alcançar 10 pontos, ela ganha uma recompensa!</li>
+                <li>Marque nas listas quais tarefas foram completadas.</li>
+                <li>Personalize as tarefas e recompensas conforme suas preferências familiares.</li>
+                <li>Reinicie o programa toda semana para manter o incentivo.</li>
+            </ol>
+            <button onclick="resetAll()" class="mt-4 bg-white text-purple-700 hover:bg-gray-200 font-bold py-2 px-6 rounded-lg transition duration-300 shadow hover:scale-105">
+                <i class="fas fa-sync-alt mr-2"></i>Reiniciar Tudo
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful');
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+        // Initial points for each child
+        const points = [0, 0, 0, 0]; // Index 0 unused for simpler child numbering (1-3)
+        const maxPoints = 10;
+
+        // Add point to a child
+        function addPoint(childNumber) {
+            if (points[childNumber] < maxPoints) {
+                points[childNumber]++;
+                updateProgress(childNumber);
+                
+                // Visual feedback
+                const button = document.querySelector(`#child${childNumber} button`);
+                if (button) {
+                    button.classList.add('bg-green-500');
+                    setTimeout(() => {
+                        button.classList.remove('bg-green-500');
+                        if (childNumber === 1) button.classList.add('bg-yellow-400');
+                        if (childNumber === 2) button.classList.add('bg-blue-400');
+                        if (childNumber === 3) button.classList.add('bg-green-400');
+                    }, 300);
+                }
+                
+                // Check if reward reached
+                if (points[childNumber] === maxPoints) {
+                    const rewardElement = document.getElementById(`reward${childNumber}`);
+                    rewardElement.innerHTML = '🎉 Parabéns! Você ganhou uma recompensa! 🎉';
+                    rewardElement.classList.add('font-bold', 'text-purple-600');
+                    
+                    // Add celebration effect
+                    const childElement = document.querySelector(`#child${childNumber}`);
+                    if (childElement) {
+                        childElement.classList.add('ring-4', 'ring-purple-300', 'animate-pulse');
+                        setTimeout(() => {
+                            childElement.classList.remove('ring-4', 'ring-purple-300', 'animate-pulse');
+                        }, 2000);
+                    }
+                }
+            }
+        }
+
+        // Update progress bar and points display
+        function updateProgress(childNumber) {
+            const percentage = (points[childNumber] / maxPoints) * 100;
+            document.getElementById(`progress${childNumber}`).style.width = `${percentage}%`;
+            document.getElementById(`points${childNumber}`).textContent = `${points[childNumber]}/${maxPoints}`;
+            
+            // Change progress bar color when full
+            if (points[childNumber] === maxPoints) {
+                document.getElementById(`progress${childNumber}`).classList.remove('bg-yellow-400', 'bg-blue-400', 'bg-green-400');
+                document.getElementById(`progress${childNumber}`).classList.add('bg-purple-500');
+            }
+        }
+
+        // Add custom task
+        function addCustomTask() {
+            const taskInput = document.getElementById('newTaskInput');
+            const taskCategory = document.getElementById('taskCategory').value;
+            
+            if (taskInput.value.trim() !== '') {
+                const tasksContainer = document.querySelector(`.border-${taskCategory}-200 ul`);
+                
+                let bgClass, textClass, borderClass;
+                if (taskCategory === 'purple') {
+                    bgClass = 'bg-purple-50';
+                    textClass = 'text-purple-600';
+                    borderClass = 'border-purple-200';
+                } else if (taskCategory === 'blue') {
+                    bgClass = 'bg-blue-50';
+                    textClass = 'text-blue-600';
+                    borderClass = 'border-blue-200';
+                } else {
+                    bgClass = 'bg-green-50';
+                    textClass = 'text-green-600';
+                    borderClass = 'border-green-200';
+                }
+                
+                const newTask = document.createElement('li');
+                newTask.className = `task-item flex items-center p-2 ${bgClass} rounded-lg mb-2`;
+                newTask.innerHTML = `
+                    <input type="checkbox" class="mr-2 h-5 w-5 ${textClass} rounded">
+                    <span>${taskInput.value}</span>
+                `;
+                
+                tasksContainer.appendChild(newTask);
+                taskInput.value = '';
+                
+                // Alert animation
+                const categoryElement = document.querySelector(`.border-${taskCategory}-200`);
+                categoryElement.classList.add('ring-2', 'ring-purple-300');
+                setTimeout(() => {
+                    categoryElement.classList.remove('ring-2', 'ring-purple-300');
+                }, 1000);
+            }
+        }
+
+        // Add custom reward
+        function addCustomReward() {
+            const rewardInput = document.getElementById('newRewardInput');
+            
+            if (rewardInput.value.trim() !== '') {
+                const rewardsContainer = document.querySelector('.grid-cols-1.sm\\:grid-cols-2.md\\:grid-cols-3.lg\\:grid-cols-4');
+                
+                const colors = ['pink', 'yellow', 'green', 'blue'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                const rewardsIcons = ['fa-gift', 'fa-star', 'fa-crown', 'fa-trophy', 'fa-heart', 'fa-smile-wink'];
+                const randomIcon = rewardsIcons[Math.floor(Math.random() * rewardsIcons.length)];
+                
+                const newReward = document.createElement('div');
+                newReward.className = `bg-${randomColor}-100 border-2 border-${randomColor}-300 rounded-lg p-4 text-center transform hover:scale-105 transition duration-300 bounce`;
+                newReward.innerHTML = `
+                    <i class="fas ${randomIcon} text-4xl text-${randomColor}-500 mb-3"></i>
+                    <h3 class="font-bold text-${randomColor}-700">${rewardInput.value}</h3>
+                    <p class="text-sm text-${randomColor}-600">Recompensa especial!</p>
+                `;
+                
+                rewardsContainer.appendChild(newReward);
+                rewardInput.value = '';
+                
+                // Remove bounce effect after animation
+                setTimeout(() => {
+                    newReward.classList.remove('bounce');
+                }, 1000);
+            }
+        }
+
+        // Reset all progress
+        function resetAll() {
+            if (confirm('Tem certeza que deseja reiniciar todo o progresso e pontos?')) {
+                for (let i = 1; i <= 3; i++) {
+                    points[i] = 0;
+                    updateProgress(i);
+                    document.getElementById(`reward${i}`).innerHTML = 'Continue assim para ganhar uma recompensa!';
+                    document.getElementById(`reward${i}`).className = 'font-semibold text-gray-700';
+                    document.getElementById(`progress${i}`).classList.remove('bg-purple-500');
+                    
+                    if (i === 1) document.getElementById(`progress${i}`).classList.add('bg-yellow-400');
+                    if (i === 2) document.getElementById(`progress${i}`).classList.add('bg-blue-400');
+                    if (i === 3) document.getElementById(`progress${i}`).classList.add('bg-green-400');
+                }
+                
+                // Reset task checkboxes
+                document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                // Success message
+                alert('Progresso reiniciado com sucesso! Vamos começar novamente!');
+            }
+        }
+
+        // Voice recognition
+        function startVoiceCommand(childNumber) {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'pt-BR';
+            
+            recognition.onstart = () => {
+                document.getElementById(`child${childNumber}`).classList.add('ring-2', 'ring-blue-400');
+            };
+            
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript.toLowerCase();
+                if (transcript.includes('adicionar ponto') || transcript.includes('adicionar')) {
+                    addPoint(childNumber);
+                } else if (transcript.includes('progresso')) {
+                    const pointsText = `Pedrinho tem ${points[childNumber]} pontos de 10`;
+                    responsiveVoice.speak(pointsText, 'Brazilian Portuguese Female');
+                } else if (transcript.includes('reiniciar')) {
+                    resetAll();
+                }
+            };
+            
+            recognition.onend = () => {
+                document.getElementById(`child${childNumber}`).classList.remove('ring-2', 'ring-blue-400');
+            };
+            
+            recognition.start();
+        }
+
+        // Alexa Skill support
+        function handleAlexaIntent(intent, childNumber) {
+            switch(intent) {
+                case 'AddPointIntent':
+                    addPoint(childNumber);
+                    break;
+                case 'CheckProgressIntent':
+                    return `A criança ${childNumber} tem ${points[childNumber]} pontos`;
+                case 'ResetAllIntent':
+                    resetAll();
+                    break;
+            }
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load voice recognition polyfill if needed
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js';
+                document.head.appendChild(script);
+            }
+
+            // Load responsive voice for feedback
+            const rvScript = document.createElement('script');
+            rvScript.src = 'https://code.responsivevoice.org/responsivevoice.js';
+            document.head.appendChild(rvScript);
+            // Add event listeners to task checkboxes for visual feedback
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const parent = this.parentElement;
+                    if (this.checked) {
+                        parent.classList.add('line-through', 'opacity-70');
+                        parent.classList.add('bg-green-100');
+                        setTimeout(() => {
+                            parent.classList.remove('bg-green-100');
+                        }, 1000);
+                    } else {
+                        parent.classList.remove('line-through', 'opacity-70');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
